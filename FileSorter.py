@@ -12,7 +12,7 @@ class FileSorterApp:
         self.master = master
         master.title("File Sorter")  # Set the window title
 
-         # Label with copyright notice
+        # Label with copyright notice
         self.copyright_label = tk.Label(master, text="© 2024 Faisal Al Busaidi Product line. All Rights Reserved.", fg="green")
         self.copyright_label.pack(side=tk.BOTTOM, pady=10)
 
@@ -74,7 +74,7 @@ class FileSorterApp:
         self.label.config(text=f"Selected Directory: {self.selected_dir}")
 
     def sort_files(self):
-       # Check if a directory has been selected
+        # Check if a directory has been selected
         if self.selected_dir:
             # Check if directory is already sorted
             if self.is_directory_sorted(self.selected_dir):
@@ -133,7 +133,7 @@ class FileSorterApp:
                 print(f'Moved {filename} to {target_folder}')
 
     def backup_files(self):
-        # Backup sorted files if the selected directory is sorted
+        # Backup sorted files and folders if the selected directory is sorted
         if self.selected_dir:
             # Define the backup directory
             backup_dir = os.path.join(self.selected_dir, 'Backup')
@@ -142,13 +142,15 @@ class FileSorterApp:
             if not os.path.exists(backup_dir):
                 os.makedirs(backup_dir)
 
-            # Copy all files from the selected directory to the backup directory
-            for filename in os.listdir(self.selected_dir):
-                file_path = os.path.join(self.selected_dir, filename)
-                if os.path.isdir(file_path) and filename != 'Backup':
-                    continue
-                backup_path = os.path.join(backup_dir, filename)
-                shutil.copy2(file_path, backup_path)
+            # Copy sorted folders and their contents to the backup directory
+            file_types = {file_type: self.folder_entries[file_type].get() for file_type in self.default_file_types}
+            for folder_name in file_types.values():
+                folder_path = os.path.join(self.selected_dir, folder_name)
+                if os.path.exists(folder_path):
+                    target_backup_folder = os.path.join(backup_dir, folder_name)
+                    if os.path.exists(target_backup_folder):
+                        shutil.rmtree(target_backup_folder)
+                    shutil.copytree(folder_path, target_backup_folder)
 
             self.label.config(text="Backup completed successfully!")
         else:
@@ -162,13 +164,15 @@ class FileSorterApp:
                 self.label.config(text="No backup found.")
                 return
 
-            # Move all files from the backup directory to the selected directory
-            for filename in os.listdir(backup_dir):
-                backup_path = os.path.join(backup_dir, filename)
-                original_path = os.path.join(self.selected_dir, filename)
+            # Move all files and folders from the backup directory to the selected directory
+            for folder_name in os.listdir(backup_dir):
+                backup_path = os.path.join(backup_dir, folder_name)
+                original_path = os.path.join(self.selected_dir, folder_name)
+                if os.path.exists(original_path):
+                    shutil.rmtree(original_path)
                 shutil.move(backup_path, original_path)
 
-            self.label.config(text="Files restored successfully!")
+            self.label.config(text="Files and folders restored successfully!")
         else:
             self.label.config(text="Please select a directory first.")
 
