@@ -13,12 +13,12 @@ File Sorter is a Python application for organizing files into designated folders
 1. Clone the repository:
    *git clone https://github.com/your-username/file-sorter.git*
 
-2.Navigate to the project directory:
+2. Navigate to the project directory:
   *cd file-sorter*
 
 ## Usage
 
-3.Run the application:
+3. Run the application:
   *python file_sorter.py*
   
   - Select a directory to sort by clicking "Browse" and navigating to the target directory.
