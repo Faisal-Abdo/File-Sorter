@@ -10,16 +10,16 @@ File Sorter is a Python application for organizing files into designated folders
 - Restore backed-up files to the original directory.
 <br>
 ## Installation
-1. Clone the repository:
-   *git clone https://github.com/your-username/file-sorter.git*
-
-2. Navigate to the project directory:
-  *cd file-sorter*
+  1. Clone the repository:
+     *git clone https://github.com/your-username/file-sorter.git*
+  
+  2. Navigate to the project directory:
+    *cd file-sorter*
+  
+  3. Run the application:
+    *python file_sorter.py*
 
 ## Usage
-
-3. Run the application:
-  *python file_sorter.py*
   
   - Select a directory to sort by clicking "Browse" and navigating to the target directory.
   - Customize folder names for different file types if needed.
