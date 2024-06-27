@@ -24,5 +24,5 @@ File Sorter is a Python application for organizing files into designated folders
   - Select a directory to sort by clicking "Browse" and navigating to the target directory.
   - Customize folder names for different file types if needed.
   - Click "Sort Files" to initiate the sorting process.
-  - The "Backup Files" button is to inform user that files sorted are backed in a folder(Backup).
+  - The "Backup Files" button is to backup folders and files that have been sorted.
   - Use the "Restore Backed Files" button to restore files from backup when needed.
