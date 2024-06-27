@@ -16,7 +16,7 @@ File Sorter is a Python application for organizing files into designated folders
 2.Navigate to the project directory:
   *cd file-sorter*
 
-##Usage
+## Usage
 
 3.Run the application:
   *python file_sorter.py*
